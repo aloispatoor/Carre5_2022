@@ -20,7 +20,7 @@ if (strlen($password) < 3 || strlen($password) > 100) {
 }
 
 try {
-    $sqlVerif = 'SELECT COUNT(*) FROM users WHERE username = :username';
+    $sqlVerif = 'SELECT COUNT(*) FROM user WHERE username = :username';
     $reqVerif = $db->prepare($sqlVerif);
     $reqVerif->bindValue(':username', $username, PDO::PARAM_STR);
     $reqVerif->execute();
@@ -43,7 +43,7 @@ if ($password !== $password2) {
 $password = password_hash($password, PASSWORD_DEFAULT);
 
 try {
-    $sqlInsert = 'INSERT INTO users (username,password) VALUES (:username,:password)';
+    $sqlInsert = 'INSERT INTO user (username,password) VALUES (:username,:password)';
     $reqInsert = $db->prepare($sqlInsert);
     $reqInsert->bindValue(':username', $username, PDO::PARAM_STR);
     $reqInsert->bindValue(':password', $password, PDO::PARAM_STR);
@@ -55,6 +55,7 @@ try {
 
 if ($resultInsert) {
     echo 'Vous êtes bien inscrits';
+    header("Location:index.php");
     exit();
 
 } else {

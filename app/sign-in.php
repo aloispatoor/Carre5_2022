@@ -5,7 +5,9 @@ include '_head.php';
     <div class="row">
         <div class="col-12">
             <!-- Navbar -->
-
+        <?php
+        require '_navbar.php';
+        ?>
             <!-- End Navbar -->
         </div>
     </div>
