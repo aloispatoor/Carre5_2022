@@ -3,6 +3,8 @@ require 'includes/config.php';
 
 if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])) {
     echo 'Missing input in the sign up form !';
+    header('Location:sign-in.php?error=missingInput');
+    exit();
 } else {
 
     $username = trim(htmlspecialchars($_POST['username']));
@@ -13,10 +15,14 @@ if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['pass
 //? Vérifier la validité des inputs de l'utilisateur
 if (strlen($username) < 3 || strlen($username) > 100) {
     echo 'Username is invalid...';
+    header('Location:sign-in.php?error=invalidTyping');
+    exit();
 }
 
 if (strlen($password) < 3 || strlen($password) > 100) {
     echo 'Password is invalid...';
+    header('Location:sign-in.php?error=invalidTyping');
+    exit();
 }
 
 try {
@@ -32,11 +38,15 @@ try {
 
 if ($resultVerif > 0) {
     echo 'This username already exists';
+    header('Location:sign-in.php?error=alreadyExists');
+    exit();
 }
 
 //? Vérifier concordance des mdp
 if ($password !== $password2) {
     echo 'The passwords are not matching';
+    header('Location:sign-in.php?error=passwordsNotMatching');
+    exit();
 }
 
 //! Fin des vérifications, insertion dans la BDD

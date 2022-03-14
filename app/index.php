@@ -1,7 +1,7 @@
 <?php
-
-include_once '_head.php';
-include_once '_navbar.php';
+    include_once '_head.php';
+    include_once '_navbar.php';
+    require '_sqlfetchProducts.php';
 ?>
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
     <!-- Navbar -->
@@ -9,7 +9,6 @@ include_once '_navbar.php';
         navbar-scroll="true">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-
                 <h6 class="font-weight-bolder mb-0">Tables</h6>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -24,6 +23,8 @@ include_once '_navbar.php';
     </nav>
     <!-- End Navbar -->
     <div class="container-fluid py-4">
+    <?php if (!empty($products)) : ?>
+    <?php foreach ($products as $product) : ?>
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -39,14 +40,11 @@ include_once '_navbar.php';
                                             ID#</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Nom</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Prix</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             DLC</th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Actions</th>
                                     </tr>
                                 </thead>
@@ -54,26 +52,26 @@ include_once '_navbar.php';
                                     <tr>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0 text-center">
-                                                1015
+                                                <?php echo $product['product_id']; ?>
                                         </td>
                                         <td>
 
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="mb-0 text-sm">Mayonnaise</h6>
+                                                    <h6 class="mb-0 text-sm"><?php echo $product['name'];?></h6>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">1.45€
+                                            <p class="text-xs font-weight-bold mb-0"><?php echo $product['price'];?>€
                                             </p>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">22/12/2022</span>
+                                            <span class="text-secondary text-xs font-weight-bold"><?php echo $product['dlc'];?></span>
                                         </td>
                                         <td class="align-middle text-center">
-                                            <a href="product.php?id=1015"
+                                            <a href="single-product.php?id=<?php echo $product['product_id']; ?>"
                                                 class="text-secondary font-weight-bold text-xs text-primary mx-1"
                                                 data-toggle="tooltip" data-original-title="Show product">
                                                 Show
@@ -96,6 +94,8 @@ include_once '_navbar.php';
                 </div>
             </div>
         </div>
+        <?php endforeach;?>
+        <?php endif;?>
         <div class="row">
             <div class="col-12">
                 <div class="card mb-4">
@@ -109,14 +109,11 @@ include_once '_navbar.php';
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Project</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Budget</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
                                             Completion</th>
                                         <th></th>
                                     </tr>
@@ -158,11 +155,6 @@ include_once '_navbar.php';
                                             </button>
                                         </td>
                                     </tr>
-
-
-
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -180,6 +172,5 @@ include_once '_navbar.php';
     </div>
 </main>
 <?php
-
 include_once '_footer.php';
 ?>

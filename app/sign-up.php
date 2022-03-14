@@ -1,5 +1,26 @@
 <?php
 include_once '_head.php';
+
+$alert = false;
+    if(!empty($_GET)){
+        $alert = true;
+        if($_GET['error'] == 'missingInput'){
+            $type = 'warning';
+            $message = 'Les champs sont vides';
+        }
+        if($_GET['error'] == 'invalidTyping'){
+            $type = 'warning';
+            $message = 'Le nom d\'utilisateur ou le mot de passe sont invalides. Merci de taper une chaîne de caractère supérieure à 3';
+        }
+        if($_GET['error'] == 'alreadyExists'){
+            $type = 'warning';
+            $message = 'Le nom d\'utilisateur existe déjà !';
+        }
+        if($_GET['error'] == 'passwordsNotMatching'){
+            $type = 'warning';
+            $message = 'Les mots de passe ne correspondent pas';
+        }
+    }
 ?>
 
 <section class="min-vh-100 mb-8">
@@ -22,15 +43,16 @@ include_once '_head.php';
                 <div class="card z-index-0">
                     <div class="card-header text-center pt-4">
                         <h5>Register with</h5>
-                        <?php echo $alert ? "<div class='alert alert-{$type} mt-2'>{$message}</div>" : ''; ?>
+                        <?php if($alert) : ?>
+                            <div class="alert alert-<?php echo $type; ?>" role="alert">
+                                <?php echo $message; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="card-body">
                         <form role="form text-left" action="sign-up_post.php" method="POST">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Username" aria-label="Username"
-                                    aria-describedby="email-addon" name="username">
-                            </div>
+                            
                             <div class="mb-3">
                                 <input type="password" class="form-control" placeholder="Password" aria-label="Password"
                                     aria-describedby="password-addon" name="password">
