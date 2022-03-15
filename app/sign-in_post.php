@@ -36,6 +36,7 @@
         }else{
             $_SESSION['user'] = $user['username'];
             $_SESSION['id'] = $user['id'];
+            $_SESSION['token'] = md5(uniqid('csrf', true));
             header('Location:index.php');
             exit();
         }

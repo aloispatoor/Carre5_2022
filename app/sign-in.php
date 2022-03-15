@@ -1,18 +1,6 @@
 <?php
     require '_head.php';
-    
-    $alert = false;
-    if(!empty($_GET)){
-        $alert = true;
-        if($_GET['error'] == 'missingInput'){
-            $type = 'warning';
-            $message = 'Les champs sont vides';
-        }
-        if($_GET['error'] == 'notMatching'){
-            $type = 'warning';
-            $message = 'Le nom d\'utilisation et le mot de passe ne correspondent pas';
-        }
-    }
+    require '_alerts.php';
 
 ?>
 <div class="container position-sticky z-index-sticky top-0">

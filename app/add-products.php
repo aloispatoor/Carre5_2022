@@ -1,6 +1,7 @@
 <?php
     $auth = true;
-    require_once '_head.php';
+    require '_head.php';
+    require '_alerts.php';
 ?>
 
 <main class="main-content ps">

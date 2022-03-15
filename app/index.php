@@ -2,6 +2,7 @@
     include_once '_head.php';
     include_once '_navbar.php';
     require '_sqlfetchProducts.php';
+    require '_alerts.php';
 ?>
 <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ps ps--active-y">
     <!-- Navbar -->
@@ -22,6 +23,13 @@
         </div>
     </nav>
     <!-- End Navbar -->
+    <div class="card-header pb-0 text-left bg-transparent">
+        <?php if($alert) : ?>
+            <div class="alert alert-<?php echo $type; ?>" role="alert">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
+    </div>
     <div class="container-fluid py-4">
     <?php if (!empty($products)) : ?>
     <?php foreach ($products as $product) : ?>
@@ -76,15 +84,19 @@
                                                 data-toggle="tooltip" data-original-title="Show product">
                                                 Show
                                             </a>
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs mx-1"
-                                                data-toggle="tooltip" data-original-title="Edit product">
-                                                Edit
-                                            </a>
-                                            <a href="javascript:;"
-                                                class="text-secondary font-weight-bold text-xs text-danger mx-1"
-                                                data-toggle="tooltip" data-original-title="Delete product">
-                                                Delete
-                                            </a>
+                                            <?php if(!empty($_SESSION)) : ?>
+                                                <a href="edit-product.php?id=<?php echo $product['product_id']; ?>" class="text-secondary font-weight-bold text-xs mx-1"
+                                                    data-toggle="tooltip" data-original-title="Edit product">
+                                                    Edit
+                                                </a>
+                                                <?php if ($user) { ?>
+                                                    <form action="delete-product.php" method="post">
+                                                        <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                                                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['token']; ?>">
+                                                        <input type="submit" class="btn btn-danger" value="Delete product" />
+                                                    </form>
+                                                <?php } ?>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 </tbody>

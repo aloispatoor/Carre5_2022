@@ -1,26 +1,6 @@
 <?php
 include_once '_head.php';
-
-$alert = false;
-    if(!empty($_GET)){
-        $alert = true;
-        if($_GET['error'] == 'missingInput'){
-            $type = 'warning';
-            $message = 'Les champs sont vides';
-        }
-        if($_GET['error'] == 'invalidTyping'){
-            $type = 'warning';
-            $message = 'Le nom d\'utilisateur ou le mot de passe sont invalides. Merci de taper une chaîne de caractère supérieure à 3';
-        }
-        if($_GET['error'] == 'alreadyExists'){
-            $type = 'warning';
-            $message = 'Le nom d\'utilisateur existe déjà !';
-        }
-        if($_GET['error'] == 'passwordsNotMatching'){
-            $type = 'warning';
-            $message = 'Les mots de passe ne correspondent pas';
-        }
-    }
+require '_alerts.php';
 ?>
 
 <section class="min-vh-100 mb-8">

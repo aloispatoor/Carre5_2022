@@ -8,7 +8,7 @@ $author = $_SESSION['id'];
 
 
 if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['price'])) {
-    header('Location:addOffers.php?error=missingInput');
+    header('Location:add-products.php?error=missingInput');
     exit();
 } else {
 
@@ -16,6 +16,16 @@ if (empty($_POST['name']) || empty($_POST['description']) || empty($_POST['price
     $description = htmlspecialchars(trim($_POST['description']));
     $dlc = htmlspecialchars(trim($_POST['dlc']));
     $price = htmlspecialchars(trim($_POST['price']));
+}
+
+if ($price <= 0) {
+    header('Location:add-products.php?error=invalidPrice');
+    exit();
+}
+
+if (strlen($name) < 3) {
+    header('Location:add-products.php?error=invalidName');
+    exit();
 }
 
 if (isset($_POST['image'])) {
