@@ -7,6 +7,7 @@
     
     <div class="card m-4">
         <div class="card-body">
+            <img src="<?php echo $singleProduct['image']; ?>" alt="<?php echo $singleProduct['description']; ?>" class="w-50">
             <h3 class="card-title"><?php echo $singleProduct['name'];?></h3>
             <p>Prix : <?php echo $singleProduct['price'];?>€</p>
             <hr>

@@ -48,6 +48,8 @@
                                             ID#</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Nom</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Image</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Prix</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -70,7 +72,9 @@
                                                 </div>
                                             </div>
                                         </td>
-
+                                        <td class="align-middle text-center">
+                                        <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['description']; ?>" class="w-25">
+                                        </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0"><?php echo $product['price'];?>€
                                             </p>

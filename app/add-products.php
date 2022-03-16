@@ -9,7 +9,7 @@
         <h5>Ajouter un produit</h5>
     </div>
     <div class="card-body m-5">
-        <form action="add-products_post.php" method="POST">
+        <form action="add-products_post.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <input type="text" class="form-control" placeholder="Nom du produit" aria-label="Name" aria-describedby="Name" name="name" required>
             </div>
@@ -23,7 +23,7 @@
                 <input type="date" class="form-control" placeholder="Date limte de consommation" aria-label="dlc" aria-describedby="dlc" name="dlc">
             </div>
             <div class="mb-3">
-                <input type="file" class="form-control" name="image" value="">
+                <input type="file" class="form-control" name="image" accept="image/png, image/jpeg, image/jpg, image/gif">
             </div>
             <button type="submit" class="btn mt-3">Ajouter</button>
         </form>
