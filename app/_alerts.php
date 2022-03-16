@@ -8,11 +8,11 @@ $alert = false;
                 $type = 'success';
                 $message = 'Vous avez modifié le produit avec succès !';
             }
-            if($_GET['success'] == 'deleteSucces'){
+            if($_GET['success'] == 'deleteSuccess'){
                 $type = 'success';
                 $message = 'Vous avez supprimé le produit avec succès !';
             }
-            if($_GET['success'] == 'insertSucces'){
+            if($_GET['success'] == 'insertSuccess'){
                 $type = 'success';
                 $message = 'Vous avez ajouté le produit avec succès !';
             }
