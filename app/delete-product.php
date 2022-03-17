@@ -24,6 +24,6 @@ try {
     $reqDeleteOffer->execute();
 
     header('Location:index.php?success=deleteSuccess');
-} catch (\PDOException $e) {
+} catch (PDOException $e) {
     echo 'Erreur :'.$e->getMessage();
 }
